@@ -9,22 +9,49 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "CART_PRODUCT")
 @DynamicUpdate
 public class CartProduct {
     @EmbeddedId
     CartProductKey id;
+    
+    private Integer quantity;
 
     @ManyToOne
     @MapsId("cartId")
     @JoinColumn(name = "CART_ID")
-    Cart cart;
+    private Cart cart;
 
     @ManyToOne
     @MapsId("productId")
     @JoinColumn(name = "PRODUCT_ID")
-    Product product;
+    private Product product;
+    
+	public Integer getQuantity() {
+		return quantity;
+	}
 
-    int rating;
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
+    @JsonIgnore
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+	
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 }

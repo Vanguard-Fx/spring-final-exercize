@@ -3,9 +3,8 @@ package com.maggioli.rest.finalEx.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.maggioli.rest.finalEx.model.Person;
+import com.maggioli.rest.finalEx.model.Category;
 
 @Repository
-public interface PersonRepository extends JpaRepository<Person, String> {
-	
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
 }

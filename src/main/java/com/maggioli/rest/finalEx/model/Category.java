@@ -25,7 +25,7 @@ public class Category {
 	private String name;
 	private String description;
 	
-	@OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "categoryId", fetch = FetchType.LAZY)
 	@Fetch(FetchMode.JOIN)
 	private List<Product> products;
 	
@@ -53,6 +53,14 @@ public class Category {
 		this.description = description;
 	}
 	
+	public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

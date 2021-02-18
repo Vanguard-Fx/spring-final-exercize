@@ -1,5 +1,6 @@
 package com.maggioli.rest.finalEx.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -19,7 +20,7 @@ public class Person {
 	
 	public enum PersonType{
 		User,
-		Admin		
+		Admin
 	}
 	
 	@Id
@@ -29,7 +30,7 @@ public class Person {
 	private String surname;
 	private String address;
 	
-	@OneToOne(mappedBy = "personId", fetch = FetchType.LAZY)
+	@OneToOne(mappedBy = "personId", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@Fetch(FetchMode.JOIN)
 	private Cart cart;
 	

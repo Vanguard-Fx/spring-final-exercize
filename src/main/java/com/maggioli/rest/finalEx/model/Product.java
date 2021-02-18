@@ -21,7 +21,11 @@ public class Product {
 	private Float price;
 	private Integer quantity;
 	
-	private Integer category;
+	private Integer categoryId;
+	
+	//Unused
+	//@OneToMany(mappedBy = "product")
+	//List<CartProduct> carts;
 
 	public Integer getId() {
 		return id;
@@ -63,18 +67,18 @@ public class Product {
 		this.quantity = quantity;
 	}
 
-	public Integer getCategory() {
-		return category;
+	public Integer getCategoryId() {
+		return categoryId;
 	}
 
-	public void setCategory(Integer category) {
-		this.category = category;
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
 	}
 
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", price=" + price
-				+ ", quantity=" + quantity + ", category=" + category + "]";
+				+ ", quantity=" + quantity + ", category=" + categoryId + "]";
 	}
 
 	@Override

@@ -1,10 +1,14 @@
 package com.maggioli.rest.finalEx.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -24,20 +28,40 @@ public class Cart {
 	@JoinColumn(name = "PERSON_ID")
 	private Person personId;
 	
+	@OneToMany(mappedBy = "cart", cascade = CascadeType.ALL)
+    List<CartProduct> products;
+	
+	public Cart() { }
+	
+	public Cart(Person personId) {
+		this.personId = personId;
+	}
 	
 	public Integer getId() {
 		return id;
 	}
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
+	
 	@JsonIgnore
 	public Person getPersonId() {
 		return personId;
 	}
+	
 	public void setPersonId(Person personId) {
 		this.personId = personId;
 	}
+	
+	public List<CartProduct> getProducts() {
+		return products;
+	}
+	
+	public void setProducts(List<CartProduct> products) {
+		this.products = products;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -46,6 +70,7 @@ public class Cart {
 		result = prime * result + ((personId == null) ? 0 : personId.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

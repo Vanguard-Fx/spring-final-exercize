@@ -7,8 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.maggioli.rest.finalEx.manager.CategoryManager;
 import com.maggioli.rest.finalEx.manager.ProductManager;
+import com.maggioli.rest.finalEx.model.Category;
 import com.maggioli.rest.finalEx.model.Product;
 
 @Controller
@@ -16,12 +19,21 @@ import com.maggioli.rest.finalEx.model.Product;
 public class ProductController {
 	@Autowired
 	ProductManager pManager;
+
+	@Autowired
+	CategoryManager cManager;
 	
 	//TODO: Add CategoryManager
 	
-	@GetMapping(path = "/getAll")
-	public ResponseEntity<List<Product>> getAllMethod() {
-		return ResponseEntity.ok(pManager.getAll());
+	@GetMapping(path = "/getAllProducts")
+	public ResponseEntity<List<Product>> getAllProductsMethod(
+			@RequestParam(name = "category_id", required = false) Integer categoryId) {
+		return ResponseEntity.ok(pManager.getAllProducts(categoryId));
+	}
+	
+	@GetMapping(path = "/getAllCategories")
+	public ResponseEntity<List<Category>> getAllCategoriesMethod() {
+		return ResponseEntity.ok(cManager.getAllCategories()); 
 	}
 }
 
